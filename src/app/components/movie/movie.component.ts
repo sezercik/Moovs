@@ -29,6 +29,7 @@ export class MovieComponent implements OnInit {
     slidesToShow: 5,
     slidesToScroll: 5,
     dots: true,
-    infinite: true
+    infinite: true,
+    arrows:false
   };
 }
