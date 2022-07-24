@@ -1,0 +1,8 @@
+<ngx-slick-carousel [config]="sliderConfig" class="carousel mt-5" #slickModal="slick-carousel">
+    <div class="slick-item ms-3" *ngFor="let m of movies" ngxSlickItem>
+
+        <a href="#">
+            <img src="{{imgSource}}/{{m.poster_path}}" alt="{{m.title}}" width="100%">
+        </a>
+    </div>
+</ngx-slick-carousel>
