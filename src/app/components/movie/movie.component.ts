@@ -27,9 +27,42 @@ export class MovieComponent implements OnInit {
   }
   sliderConfig = {
     slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToScroll: 1,
     dots: true,
     infinite: true,
-    arrows:false
+    arrows:false,
+    responsive: [
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+
+        }
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2
+
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+
+        }
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 }
