@@ -13,8 +13,8 @@ export class SearchService {
   constructor(private httpClient: HttpClient) {}
 
 
-  getMovieByName(name: string): Observable<ListResponseModel<Movie>> {
-    let newPath = this.apiUrlForSearch + this.apiKey + '&query=' + name;
+  getMovieByName(name: string,page:number): Observable<ListResponseModel<Movie>> {
+    let newPath = this.apiUrlForSearch + this.apiKey + '&query=' + name + '&page=' + page;
     return this.httpClient.get<ListResponseModel<Movie>>(newPath);
   }
 

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { MovieComponent } from './components/movie/movie.component';
@@ -10,7 +12,6 @@ import { CategoryComponent } from './components/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MovieDetailComponent } from './components/moviedetail/moviedetail.component';
-import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SearchComponent } from './components/search/search.component';
     AppRoutingModule,
     HttpClientModule,
     SlickCarouselModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
 
   ],
   providers: [],

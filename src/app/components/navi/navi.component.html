@@ -19,7 +19,7 @@
         <form class="d-flex" role="search">
           <input class="form-control me-2" #search type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}">
           <!-- [(ngModel)]="movieName" [ngModelOptions]="{standalone: true}" -->
-          <button class="btn btn-outline-success" type="submit" [routerLink]="['/search']" [queryParams]="{search_value: searchValue}" >Search</button>
+          <button class="btn btn-outline-success" type="submit" [routerLink]="['/search']" [queryParams]="{search_value: searchValue, page:1}" >Search</button>
         </form>
       </div>
     </div>

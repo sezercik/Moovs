@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie/movie.module';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -9,42 +9,71 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  imgSource:string = 'https://image.tmdb.org/t/p/w500';
+  //is data loaded
+  isDataLoaded:boolean=false;
+
+  //movie
+  imgSource: string = 'https://image.tmdb.org/t/p/w500';
   searchValue: string = '';
   movies: Movie[] = [];
-  totalPages:number = 0;
-  currentPage:number=0;
 
+  //pagination
+  count: number = 0;
+  maxCount: number = 0;
 
   constructor(
     private route: ActivatedRoute,
-    private searhService: SearchService
+    private searhService: SearchService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.getSearchedMovies();
+  }
+
+  getSearchedMovies() {
     let value;
+    let count;
     this.route.queryParamMap.subscribe((params) => {
+      console.log(params);
       value = params.get('search_value');
+      // @ts-ignore: Object is possibly 'null'.
+      count = +params.get('page');
       if (value == undefined) {
         value = '';
       }
       this.searchValue = value;
-      this.searhService.getMovieByName(value).subscribe((data) => {
+      this.count = count;
+      this.searhService.getMovieByName(value, count).subscribe((data) => {
         this.movies = data.results;
-        this.totalPages = data.total_pages;
-        this.currentPage = data.page;
-        this.movies.forEach(movie => {
-          if(movie.poster_path == null){
+        this.maxCount = data.total_pages;
+        this.movies.forEach((movie) => {
+          if (movie.poster_path == null) {
             movie.poster_path = '../../../assets/images/404.jpg';
-          }else{
+          } else {
             movie.poster_path = this.imgSource + movie.poster_path;
           }
         });
-        console.log(this.movies);
-        console.log(data);
 
       });
     });
+    this.isDataLoaded = true;
   }
 
+  onNewMovies(event: any) {
+    window.history.replaceState({}, '',`/search?search_value=${this.searchValue}&page=${event}`);
+    this.searhService
+      .getMovieByName(this.searchValue, event)
+      .subscribe((data) => {
+        this.count = event;
+        this.movies = data.results;
+        this.movies.forEach((movie) => {
+          if (movie.poster_path == null) {
+            movie.poster_path = '../../../assets/images/404.jpg';
+          } else {
+            movie.poster_path = this.imgSource + movie.poster_path;
+          }
+        });
+      });
+  }
 }

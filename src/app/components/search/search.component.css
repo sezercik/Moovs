@@ -10,7 +10,8 @@
     z-index: 1000;
     padding: 5px;
     color: #FFFFFF;
-
+    border-bottom-left-radius: var(--bs-border-radius);
+    border-bottom-right-radius: var(--bs-border-radius);
     backdrop-filter: blur(4px) grayscale(100%) brightness(0.5);
 }
 
