@@ -21,6 +21,13 @@ export class MovieComponent implements OnInit {
   getMovies(){
     this.movieService.getMovies().subscribe(response=>{
       this.movies = response.results;
+      this.movies.forEach(movie => {
+        if(movie.poster_path == null){
+          movie.poster_path = '../../../assets/images/404.jpg';
+        }else{
+          movie.poster_path = this.imgSource + movie.poster_path;
+        }
+      });
       this.dataLoaded = true;
       console.log(this.movies);
     })

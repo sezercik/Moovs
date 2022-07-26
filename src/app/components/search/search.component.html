@@ -1,0 +1,29 @@
+<app-navi></app-navi>
+<div class="container mt-3">
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="{{searchValue" aria-describedby="button-search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}">
+        <button class="btn btn-outline-primary" type="button" id="button-search" [routerLink]="['/search']" [queryParams]="{search_value: searchValue}">Button</button>
+    </div>
+
+
+    <div class="row">
+        <h2>Results</h2>
+        <div class="col-lg-3 col-md-4 col-sm-6 movie_container mt-3" *ngFor="let movie of movies">
+            <div class="movie_details">
+                <div class="image_wrapper">
+                    <a routerLink="/movie/{{movie.id}}">
+                        <img src="{{movie.poster_path}}" alt="{{movie.title}}" width="100%" class="rounded">
+                    </a>
+                </div>
+                <div class="movie_ex">
+                    <h6 class="movie_title">
+                        <a routerLink="/movie/{{movie.id}}">{{movie.title}}</a>
+                    </h6>
+                    <p>{{movie.release_date}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

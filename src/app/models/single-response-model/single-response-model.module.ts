@@ -1,3 +1,3 @@
 export interface SingleResponseModel<T>{
-  data:T
+  T:object;
 }

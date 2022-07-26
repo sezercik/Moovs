@@ -9,6 +9,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CategoryComponent } from './components/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MovieDetailComponent } from './components/moviedetail/moviedetail.component';
+import { FormsModule } from '@angular/forms';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,16 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     NaviComponent,
     MovieComponent,
     DashboardComponent,
-    CategoryComponent
+    CategoryComponent,
+    MovieDetailComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    FormsModule
 
   ],
   providers: [],
