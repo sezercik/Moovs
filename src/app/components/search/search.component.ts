@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Movie } from 'src/app/models/movie/movie.module';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -9,13 +9,11 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  //is data loaded
-  isDataLoaded:boolean=false;
-
   //movie
   imgSource: string = 'https://image.tmdb.org/t/p/w500';
   searchValue: string = '';
   movies: Movie[] = [];
+  i = 0;
 
   //pagination
   count: number = 0;
@@ -24,7 +22,6 @@ export class SearchComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private searhService: SearchService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -57,11 +54,12 @@ export class SearchComponent implements OnInit {
 
       });
     });
-    this.isDataLoaded = true;
+    this.i += 1;
   }
 
   onNewMovies(event: any) {
     window.history.replaceState({}, '',`/search?search_value=${this.searchValue}&page=${event}`);
+    this.i += 1;
     this.searhService
       .getMovieByName(this.searchValue, event)
       .subscribe((data) => {
