@@ -11,7 +11,7 @@ import { Movie } from '../models/movie/movie.module';
 export class MovieService {
   apiUrl = 'https://api.themoviedb.org/3/movie/'
   apiUrlForSearch = 'https://api.themoviedb.org/3/search/movie?api_key=';
-  apiKey = 'f4702acda5b7fc72ffaec2ca2d781a28'
+  apiKey = yourApiKey;
 
   constructor(private httpClient:HttpClient) { }
 
